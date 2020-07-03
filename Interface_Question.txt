@@ -1,0 +1,55 @@
+11. If the input choice is 1 or 2,try calling the isHot method on the converter object.Why do you think this fails?
+even thugh converter holds an object of Thermometer or Thermocouple...
+
+=>	In Interface a method only can be declared. It contains method signeture and field, & its body have to
+ define in another class which implements the the interface. 
+ Let , 
+		interface A{
+			public void Fun();
+		}
+		class B implement A{
+			public void Fun(){
+				System.out.println("Method Fun..");
+			}
+			public void Func(){
+				System.out.println("Method Fun..");
+			}
+		}
+	now let we make a variable "var" of interface type i.e A.
+		A var=new B();
+	now if we write 
+		System.out.print("result: "+ var.Fun()); it will execute properly.
+	but if we try to do
+		System.out.print("result: "+ var.Func()); it will generate an error.
+	because "var" is a interface type variable, & in interface only Fun() method are declared.
+	it only can access those method which declared in interface only. If we try to access extra method
+	it can't identify the method & generate error.
+	
+	So for this problem though thermometer Thermocouple, PitoTube ShaftLog class hold the object of
+	Converter interface the converter variable of "Converter" type never can access isHot(),isFast()
+	methods, because they are not declared in Converter interface.
+	
+******************************************************************************************************************
+
+12. Now, force typecast the converter instance to its subclass of Thermometer,Thermocouple,pitotTube,ShaftLog.
+	what will happen?
+	
+=>	Now 
+		interface A{
+			public void Fun();
+		}
+		class B implement A{
+			public void Fun(){
+				System.out.println("Method Fun..");
+			}
+			public void Func(){
+				System.out.println("Method Fun..");
+			}
+		}
+	
+	if  A var=new B();
+			B obj=(B)var;
+	now System.out.print("method Func: "+ obj.Func()); will execute properly.
+	because now instance type variable is forcefully typecasted into the subclass type object.
+	now new object "obj" can find all the methods that are in B class. now it becomes the object of B
+	class..
